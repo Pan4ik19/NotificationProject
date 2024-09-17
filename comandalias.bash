@@ -1,0 +1,6 @@
+alias dc='docker compose'
+alias pa='docker compose run artisan'
+alias comp='docker compose run composer'
+alias dc-up='docker compose up nginx -d'
+alias dc-down='docker compose down'
+alias worker='docker compose exec php-fpm bash && php artisan queue:work'

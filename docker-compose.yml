@@ -10,6 +10,7 @@ services:
     restart: always
     depends_on:
       - php-fpm
+      - rabbitmq
   php-fpm:
     build:
       context: docker
@@ -32,9 +33,12 @@ services:
       ports:
           - 15672:15672
           - 5672:5672
-
-#  scheduler:
-#        build:
-#            context: docker
-#            dockerfile: php-fpm.docker
-#        command: ["php", "/var/www/html/artisan", "schedule:work"]
+  artisan:
+      build:
+          context: docker
+          dockerfile: php-fpm.docker
+      volumes:
+          - .:/var/www/html
+      env_file:
+          - .env
+      entrypoint: ["php", "/var/www/html/artisan"]

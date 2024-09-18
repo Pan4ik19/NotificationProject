@@ -2,14 +2,16 @@
 
 namespace app\Console;
 
+use app\Console\Commands\NotificationScriptCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Artisan;
 
 class Kernel extends ConsoleKernel
 {
 
     protected $commands = [
-        //Commands/NotificationScriptCommand::class
+       NotificationScriptCommand::class
     ];
 
     /**
@@ -17,9 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:notification-script --stop-when-empty')
-            ->everyFiveMinutes()
-            ->withoutOverlapping();
+        $schedule->command("app:notification-script")->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**

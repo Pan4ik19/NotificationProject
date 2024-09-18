@@ -43,6 +43,6 @@ class NotificationScriptCommand extends Command
             $googleService->update($updateData, env('GOOGLE_LIST_ID'));
         }
 
-        echo 'successfully';
+//        echo 'successfully';
     }
 }
